@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title> High School Entebbe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "nVu2-z5K2HZzHRvLD",
+      });
+   })();
+</script>
+
+
+<style>
+  :root {
+    --green: #1a3d2b;
+    --green-mid: #2d6a4f;
+    --green-light: #52b788;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #fdf8ef;
+    --dark: #0e1f17;
+    --white: #ffffff;
+    --text-muted: #7a8c82;
+    --card-bg: #ffffff;
+    --section-bg: #1a3d2b;
+    --nav-bg: rgba(14,31,23,0.97);
+  }
+  [data-theme="light"] {
+    --green: #1a3d2b;
+    --dark: #0e1f17;
+    --section-bg: #f5f0e8;
+    --card-bg: #ffffff;
+    --text-muted: #5a7060;
+  }
+ 
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--section-bg);color:var(--dark);transition:background 0.4s,color 0.4s;}
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar{width:6px;}
+  ::-webkit-scrollbar-track{background:var(--dark);}
+  ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+  /* ─── NAVBAR ─── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:999;
+    background:rgb(83, 114, 114);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(201,168,76,0.15);
+    padding:0 5%;
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+    transition:background 0.4s;
+  }
+  /*--ALL ABOUT SENA LOGO--*/
+  .nav-logo{display:flex;align-items:center;gap:14px;}
+  .logo-crest{
+    width:46px;height:46px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--green-mid));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;
+    font-weight:900;font-size:18px;color:white;
+    box-shadow:0 0 0 3px rgba(201,168,76,0.3);
+  }
+  .logo-text{display:flex;flex-direction:column;}
+  .logo-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--gold);letter-spacing:1px;}
+  .logo-sub{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;}
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:500;transition:color 0.3s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+
+  /* THEME TOGGLE */
+  .theme-toggle{
+    position:relative;width:54px;height:28px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(201,168,76,0.4);
+    border-radius:14px;cursor:pointer;
+    transition:background 0.3s;
+  }
+  .theme-toggle .knob{
+    position:absolute;top:3px;left:3px;
+    width:22px;height:22px;border-radius:50%;
+    background:var(--gold);
+    transition:transform 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;
+  }
+  .theme-toggle.active .knob{transform:translateX(26px);}
+  .nav-cta{
+    background:var(--gold);color:var(--dark);
+    border:none;padding:9px 22px;border-radius:6px;
+    font-size:12px;font-weight:600;letter-spacing:1px;
+    text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s;
+  }
+  .nav-cta:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+  /* HAMBURGER */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .hamburger span{width:24px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s;}
+  .mobile-menu{
+    display:none;position:fixed;top:72px;left:0;right:0;
+    background:var(--nav-bg);border-top:1px solid rgba(201,168,76,0.1);
+    padding:24px 5%;z-index:998;
+  }
+  .mobile-menu.open{display:block;}
+  .mobile-menu a{display:block;color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.05);letter-spacing:1px;text-transform:uppercase;}
+
+  /* ─── HERO ─── */
+  #hero{ min-height:100vh;
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;
+    padding-top:72px;
+                                             /*--HERO IMAGE CAN BE ADDED HERE--*/
+    
+    
+   
+  }
+  .hero-orb1{
+    position:absolute;top:-200px;right:-100px;
+    width:700px;height:700px;border-radius:50%;
+    background:radial-gradient(circle,rgba(116, 184, 220, 0.12) 0%,transparent 70%);
+    animation:orbPulse 8s ease-in-out infinite;
+  }
+  .hero-orb2{
+    position:absolute;bottom:-300px;left:-150px;
+    width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(82,183,136,0.1) 0%,transparent 70%);
+    animation:orbPulse 10s ease-in-out infinite reverse;
+  }
+  @keyframes orbPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+  .hero-grid{
+    position:absolute;inset:0;
+      linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);
+    background-size:60px 60px;
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    width:100%;max-width:1300px;margin:0 auto;
+    padding:0 5%;
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:60px;align-items:center;
+  }
+  /*--building exelence here--*/
+  .hero-badge{  
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(201,168,76,0.15);
+    border:1px solid rgba(0, 5, 11, 0.35);
+    border-radius:30px;padding:6px 18px;
+    color:var(--gold);font-size:11px;letter-spacing:2px;
+    text-transform:uppercase;font-weight:600;
+    margin-bottom:28px;
+    margin-top: 3px;
+    animation:fadeUp 0.8s ease both;
+  }
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-light);animation:blink 1.5s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;};}
+
+  /*--big sena-high--*/
+  .hero-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(42px,5.5vw,78px);
+    line-height:1.05;color:rgba(194, 22, 22, 0.829);  /*--sena-word--*/
+    margin-bottom:24px;
+  }
+  .hero-title .line{
+    display:block;
+    animation:fadeUp 0.8s ease both;
+  }
+  .hero-title .line:nth-child(1){animation-delay:0.15s;}
+  .hero-title .line:nth-child(2){animation-delay:0.3s;color:var(--gold);}
+  .hero-title .line:nth-child(3){animation-delay:0.45s;font-style:italic;font-size:0.7em;color:rgba(255,255,255,0.6);}
+  .hero-desc{
+    color:rgba(255,255,255,0.65);font-size:16px;line-height:1.8;
+    max-width:480px;margin-bottom:40px;
+    animation:fadeUp 0.8s 0.55s ease both;
+  }
+  .hero-actions{
+    display:flex;gap:16px;flex-wrap:wrap;
+    animation:fadeUp 0.8s 0.7s ease both;
+  }
+  .btn-primary{
+    background:var(--gold);color:var(--dark);
+    border:none;padding:15px 34px;border-radius:8px;
+    font-size:13px;font-weight:700;letter-spacing:1.5px;
+    text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s;text-decoration:none;display:inline-block;
+  }
+  .btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 12px 30px rgba(201,168,76,0.3);}
+  .btn-outline{
+    background:transparent;color:white;
+    border:1px solid rgba(255,255,255,0.3);
+    padding:15px 34px;border-radius:8px;
+    font-size:13px;font-weight:500;letter-spacing:1.5px;
+    text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s;text-decoration:none;display:inline-block;
+  }
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* HERO VISUAL */
+  .hero-visual{
+    position:relative;
+    animation:fadeLeft 1s 0.4s ease both;
+  }
+  @keyframes fadeLeft{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+  /*--THE ESTABLISED CARD--*/
+  .hero-card-main{
+    background:rgba(255, 255, 255, 0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(20px);
+    border-radius:20px;padding:32px;
+    overflow:hidden;position:relative;
+  }
+  .hero-school-img{
+    width:100%;height:260px;object-fit:cover;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:22px;color:white;
+    letter-spacing:2px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .school-img-placeholder{
+    width:100%;height:260px;border-radius:12px;
+    position:relative;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .sip-overlay{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+  .sip-text{position:relative;z-index:1;text-align:center;color:white;}
+  .sip-text h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-bottom:6px;}
+  .sip-text p{font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:0.7;}
+  .sip-badge{
+    position:absolute;top:16px;right:16px;
+    background:var(--gold);color:var(--dark);
+    padding:4px 12px;border-radius:20px;font-size:10px;
+    font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  }
+  .hero-stats-row{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:16px;margin-top:20px;
+  }
+  .hstat{
+    background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);
+    border-radius:12px;padding:16px;text-align:center;
+  }
+  .hstat-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);}
+  .hstat-lbl{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ─── SECTION BASE ─── */
+  section{padding:100px 5%;}
+  .section-label{
+    display:inline-block;
+    color:var(--gold);font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;font-weight:600;margin-bottom:16px;
+  }
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(32px,4vw,52px);
+    line-height:1.1;color:var(--dark);margin-bottom:20px;
+  }
+  [data-theme="dark"] .section-title{color:var(--cream);}
+  .section-sub{
+    color:var(--text-muted);font-size:16px;line-height:1.8;
+    max-width:560px;
+  }
+
+  /* ─── FACILITIES ─── */
+  #facilities{background:var(--section-bg);}
+  .facilities-header{text-align:center;margin-bottom:60px;}
+  .facilities-header .section-sub{margin:0 auto;}
+  .facilities-filter{
+    display:flex;justify-content:center;gap:12px;
+    flex-wrap:wrap;margin-bottom:48px;
+  }
+  .filter-btn{
+    padding:9px 22px;border-radius:30px;
+    border:1px solid rgba(26,61,43,0.2);
+    background:transparent;color:var(--text-muted);
+    font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+    cursor:pointer;font-family:'DM Sans',sans-serif;
+    transition:all 0.3s;font-weight:500;
+  }
+  [data-theme="dark"] .filter-btn{border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);}
+  .filter-btn.active,.filter-btn:hover{
+    background:var(--green);color:var(--gold);
+    border-color:var(--green);
+  }
+  .facilities-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:28px;max-width:1300px;margin:0 auto;
+  }
+  .facility-card{
+    background:var(--card-bg);border-radius:18px;
+    overflow:hidden;cursor:pointer;
+    transition:transform 0.4s cubic-bezier(.22,1,.36,1),box-shadow 0.4s;
+    box-shadow:0 4px 24px rgba(0,0,0,0.06);
+    position:relative;
+  }
+  [data-theme="dark"] .facility-card{box-shadow:0 4px 24px rgba(0,0,0,0.3);}
+  .facility-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 50px rgba(26,61,43,0.15);
+  }
+  .facility-img{
+    height:200px;position:relative;overflow:hidden;
+  }
+  .facility-img-fill{
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:36px;color:white;
+    transition:transform 0.5s;
+  }
+  .facility-card:hover .facility-img-fill{transform:scale(1.08);}
+  .facility-tag{
+    position:absolute;top:14px;left:14px;
+    background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);
+    color:white;padding:4px 12px;border-radius:20px;
+    font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+  }
+  .facility-body{padding:24px;}
+  .facility-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+  [data-theme="dark"] .facility-name{color:var(--cream);}
+  .facility-desc{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:16px;}
+  .facility-meta{display:flex;gap:16px;align-items:center;}
+  .fmeta-item{display:flex;align-items:center;gap:6px;color:var(--text-muted);font-size:12px;}
+  .fmeta-dot{width:6px;height:6px;border-radius:50%;background:var(--green-light);}
+  .facility-more{
+    margin-top:12px;padding:10px 0 0;
+    border-top:1px solid rgba(0,0,0,0.06);
+    color:var(--gold);font-size:12px;font-weight:600;
+    letter-spacing:1px;text-transform:uppercase;
+    cursor:pointer;transition:gap 0.3s;
+    display:flex;align-items:center;gap:8px;
+  }
+  [data-theme="dark"] .facility-more{border-top-color:rgba(255,255,255,0.06);}
+  .facility-more:hover .arrow-icon{transform:translateX(4px);}
+  .arrow-icon{transition:transform 0.3s;font-size:14px;}
+
+  /* ─── POPUP ─── */
+  .popup-overlay{
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(0, 0, 0, 0.75);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    opacity:0;pointer-events:none;transition:opacity 0.3s;
+  }
+  .popup-overlay.active{opacity:1;pointer-events:all;}
+  .popup-card{
+    background:var(--card-bg);border-radius:24px;
+    max-width:600px;width:100%;
+    transform:scale(0.85) translateY(20px);
+    transition:transform 0.4s cubic-bezier(.22,1,.36,1);
+    overflow:hidden;max-height:90vh;overflow-y:auto;
+  }
+  .popup-overlay.active .popup-card{transform:scale(1) translateY(0);}
+  .popup-hero-img{
+    height:220px;display:flex;align-items:center;justify-content:center;
+    font-size:56px;color:white;position:relative;overflow:hidden;
+  }
+  .popup-close{
+    position:absolute;top:18px;right:18px;
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(0,0,0,0.4);border:none;cursor:pointer;
+    color:white;font-size:18px;display:flex;align-items:center;justify-content:center;
+    transition:background 0.3s;z-index:2;
+  }
+  .popup-close:hover{background:rgba(21, 197, 236, 0.8);}
+  .popup-body{padding:32px;}
+  .popup-tag{
+    display:inline-block;background:rgba(201,168,76,0.15);
+    color:var(--gold);padding:4px 14px;border-radius:20px;
+    font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;
+    margin-bottom:16px;
+  }
+  .popup-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--dark);margin-bottom:12px;}
+  [data-theme="dark"] .popup-title{color:var(--cream);}
+  .popup-desc{color:var(--text-muted);font-size:15px;line-height:1.8;margin-bottom:24px;}
+  .popup-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .popup-feat{
+    display:flex;align-items:center;gap:10px;
+    background:rgba(26,61,43,0.06);border-radius:10px;
+    padding:12px 14px;font-size:13px;color:var(--dark);
+  }
+  [data-theme="dark"] .popup-feat{background:rgba(255,255,255,0.05);color:var(--cream);}
+  .popup-feat-dot{width:8px;height:8px;border-radius:50%;background:var(--green-light);flex-shrink:0;}
+
+  /* ─── CONTACT ─── */
+  #contact{
+    background:linear-gradient(135deg, var(--dark) 0%, var(--green) 100%);
+    position:relative;overflow:hidden;
+  }
+  .contact-orb{
+    position:absolute;top:-100px;right:-100px;
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 70%);
+  }
+  .contact-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;align-items:start;
+    position:relative;z-index:1;
+  }
+  .contact-info .section-title{color:white;}
+  .contact-info .section-sub{color:rgba(255,255,255,0.6);}
+  .contact-items{margin-top:40px;display:flex;flex-direction:column;gap:20px;}
+  .contact-item{
+    display:flex;align-items:flex-start;gap:18px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;padding:20px;
+    transition:border-color 0.3s;
+  }
+  .contact-item:hover{border-color:rgba(201,168,76,0.4);}
+  .contact-icon{
+    width:44px;height:44px;border-radius:10px;
+    background:rgba(201,168,76,0.15);
+    border:1px solid rgba(201,168,76,0.3);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .contact-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+  .contact-item-info h4{color:white;font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+  .contact-item-info p{color:rgba(255,255,255,0.6);font-size:14px;line-height:1.6;}
+
+  /* FORM */
+  .contact-form{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(20px);
+    border-radius:20px;padding:40px;
+  }
+  .form-title{color:white;font-family:'Playfair Display',serif;font-size:26px;margin-bottom:28px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-group{margin-bottom:20px;}
+  .form-group label{display:block;color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .form-group input,.form-group select,.form-group textarea{
+    width:100%;background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:10px;padding:13px 16px;
+    color:white;font-size:14px;font-family:'DM Sans',sans-serif;
+    outline:none;transition:border-color 0.3s;
+    -webkit-appearance:none;
+  }
+  .form-group select option{background:var(--green);color:white;}
+  .form-group textarea{resize:vertical;min-height:110px;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,168,76,0.12);
+  }
+  .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3);}
+  .submit-btn{
+    width:100%;background:var(--gold);color:var(--dark);
+    border:none;padding:15px;border-radius:10px;
+    font-size:13px;font-weight:700;letter-spacing:2px;
+    text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s;font-family:'DM Sans',sans-serif;
+  }
+  .submit-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,0.3);}
+
+  /* ─── FOOTER ─── */
+  footer{
+    background:var(--dark);
+    padding:60px 5% 30px;
+    border-top:1px solid rgba(201,168,76,0.1);
+  }
+  .footer-grid{
+    max-width:1300px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:48px;margin-bottom:48px;
+  }
+  .footer-brand .logo-name{font-size:18px;margin-bottom:12px;display:block;}
+  .footer-brand p{color:rgba(255,255,255,0.45);font-size:13px;line-height:1.8;}
+  .footer-col h5{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;font-weight:600;}
+  .footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;padding:5px 0;transition:color 0.3s;}
+  .footer-col a:hover{color:white;}
+  .footer-bottom{
+    max-width:1300px;margin:0 auto;
+    border-top:1px solid rgba(255,255,255,0.06);
+    padding-top:24px;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:gap;
+  }
+  .footer-bottom p{color:rgba(255,255,255,0.3);font-size:12px;}
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.1s;}
+  .reveal-delay-2{transition-delay:0.2s;}
+  .reveal-delay-3{transition-delay:0.3s;}
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:1024px){
+    .hero-content{grid-template-columns:1fr;gap:40px;}
+    .hero-visual{max-width:500px;margin:0 auto;}
+    .contact-inner{grid-template-columns:1fr;gap:48px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none;}
+    .hamburger{display:flex;}
+    section{padding:70px 5%;}
+    .form-row{grid-template-columns:1fr;}
+    .popup-features{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-stats-row{grid-template-columns:repeat(3,1fr);}
+    .footer-bottom{flex-direction:column;gap:10px;text-align:center;}
+  }
+  @media(max-width:480px){
+    .hero-stats-row{grid-template-columns:repeat(3,1fr);}
+    .hstat-num{font-size:20px;}
+    .facilities-grid{grid-template-columns:1fr;}
+  }
+
+  /* Hidden facility items */
+  .facility-card.hidden{display:none;}
+
+  /* Announcement Banner */
+  .announcement{
+    background:var(--gold);color:var(--dark);
+    text-align:center;padding:10px;
+    font-size:12px;font-weight:600;letter-spacing:1px;
+    position:relative;z-index:998; 
+  }
+  .announcement span{margin:0 20px;}
+
+  /* Toast */
+  .toast{
+    position:fixed;bottom:30px;right:30px;z-index:9999;
+    background:var(--green);color:rgb(63, 82, 85);
+    padding:14px 24px;border-radius:10px;
+    border-left:4px solid var(--gold);
+    font-size:14px;transform:translateX(200px);
+    opacity:0;transition:all 0.4s;
+    pointer-events:none;
+  }
+  .toast.show{transform:translateX(0);opacity:1;}
+
+.item{ padding:0.5rem 1rem ;
+       font-weight: bold;
+       color:#2c4d57;
+       background:rgba(176, 225, 233, 0.1) ;
+       border-radius:0.9rem ;
+       font-size: 0.9rem;
+}
+
+/* ─── GALLERY FILTER BUTTONS ─── */
+.gallery-filter-btn {
+  padding:9px 22px; border-radius:30px;
+  border:1px solid rgba(26,61,43,0.2);
+  background:transparent; color:var(--text-muted);
+  font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+  cursor:pointer; font-family:'DM Sans',sans-serif;
+  transition:all 0.3s; font-weight:500;
+}
+[data-theme="dark"] .gallery-filter-btn { border-color:rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); }
+.gallery-filter-btn.active, .gallery-filter-btn:hover {
+  background:var(--green); color:var(--gold); border-color:var(--green);
+}
+
+/* ─── GALLERY TRACK SCROLLBAR ─── */
+#galleryTrack::-webkit-scrollbar { height:4px; }
+#galleryTrack::-webkit-scrollbar-track { background:transparent; }
+#galleryTrack::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+
+/*__ GALLERY CARD HIDDEN ───*/
+.gallery-card.g-hidden { display:none; }
+
+/*----whats app icon---*/
+.whatsapp-float {  position: fixed;
+                   bottom: 20px;
+                   right: 20px;
+                   width: 60px;
+                   height:60px ;
+                   z-index: 1000;
+}
+
+.whatsapp-float img{  width:100%;
+                      height: 100%;
+                      border-radius:50% ;
+                      box-shadow:0 4px 10px rgba(0,0,0.3) ;
+                      transition: transform 0.3s ease ;
+                      background-color:green ;
+
+}
+.whatsapp-float img:hover{ transform: scale(1.1);}
+        
+</style>
+
+
+
+</head>
+<body data-theme="light">
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-crest">GS</div>
+    <div class="logo-text">
+      <span class="logo-name"> GOOD SCHOOL</span>
+      <span class="logo-sub">Entebbe, Uganda</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Apply Now</button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="closeMobile()">Home</a>
+    <a href="# " onclick="closeMobile()">ABOUT GOOD SCHHOOL</a>
+
+  <a href="#facilities" onclick="closeMobile()">Facilities</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#contact" onclick="closeMobile()" style="color:var(--gold);font-weight:700;">Apply Now</a>
+</div>
+
+<!-- ═══════════════════════════════════════ HERO ═══ -->
+<section  id="hero" style="background-image:url('sena hero.png'); background-repeat: no-repeat; background-size: cover;background-position: center;" >  <!--image in the hero section-->
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+      "Seek knowledge,serve humanity" &mdash; Entebbe
+      </div>
+      <h1 class="hero-title">
+        <span class="line">Good</span>
+        <span class="line">School</span>
+        <span class="line">Entebbe</span>
+      </h1>
+      <p class="hero-desc">
+        AT Good School-Entebbe,we don't just educate we transform lives and mould future leaders. <br>
+        Core Values: Integrity, Discipline, Innovation & Brotherhood.
+      </p>
+      <div class="hero-actions">
+        <a href="#facilities" class="btn-primary">Explore Campus</a>
+        <a href="#contact" class="btn-outline">Enroll Now</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="school-img-placeholder">
+          <div class="sip-overlay"></div>
+          <div class="sip-text">
+            <div style="width:80px;height:80px;border-radius:50%;background:rgba(201,168,76,0.2);border:2px solid rgba(201,168,76,0.4);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="image" stroke="rgba(201,168,76,0.9)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Good School</h3>
+            <p>Entebbe, Uganda</p>
+          </div>
+          <div class="sip-badge">Est. 2026</div>
+        </div>
+        
+</section>
+
+       <!-- ═══════════════════════════════════════ WHY JOIN ═══ -->
+<section id="why-join" style="background: linear-gradient(135deg, var(--dark) 0%, var(--green) 100%); padding: 100px 5%; position: relative; overflow: hidden;">
+  <div style="position:absolute;top:-150px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="max-width:1300px; margin:0 auto;">
+    <div class="reveal" style="text-align:center; margin-bottom:60px;">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title" style="color:white;">Why Good School?</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6); margin:0 auto;">We go beyond academics — we shape character, ignite purpose, and prepare students for the demands of a changing world.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px;">
+
+      <div class="reveal" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:30px; transition:border-color 0.3s, transform 0.3s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='translateY(0)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4 style="font-family:'Playfair Display',serif; color:white; font-size:18px; margin-bottom:10px;">Academic Excellence</h4>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.8;">Rigorous O-Level and new curiclum programs taught by highly qualified teachers committed to outstanding results.</p>
+      </div>
+
+      <div class="reveal reveal-delay-1" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:30px; transition:border-color 0.3s, transform 0.3s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='translateY(0)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4 style="font-family:'Playfair Display',serif; color:white; font-size:18px; margin-bottom:10px;">Safe Environment</h4>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.8;">24/7 security, CCTV surveillance, and dedicated houseparents ensure every student is protected and cared for.</p>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:30px; transition:border-color 0.3s, transform 0.3s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='translateY(0)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h4 style="font-family:'Playfair Display',serif; color:white; font-size:18px; margin-bottom:10px;">Holistic Development</h4>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.8;">Sports, arts, debate, and leadership clubs develop well-rounded individuals beyond the classroom.</p>
+      </div>
+
+      <div class="reveal" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:30px; transition:border-color 0.3s, transform 0.3s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='translateY(0)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4 style="font-family:'Playfair Display',serif; color:white; font-size:18px; margin-bottom:10px;">Expert Teachers</h4>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.8;">Our experienced, passionate staff bring subject mastery and genuine care for every student's success.</p>
+      </div>
+
+      <div class="reveal reveal-delay-1" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:30px; transition:border-color 0.3s, transform 0.3s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='translateY(0)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4 style="font-family:'Playfair Display',serif; color:white; font-size:18px; margin-bottom:10px;">Modern Technology</h4>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.8;">Fiber internet, ICT labs, smart classrooms and digital tools prepare students for tomorrow's digital economy.</p>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:30px; transition:border-color 0.3s, transform 0.3s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.5)';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='translateY(0)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h4 style="font-family:'Playfair Display',serif; color:white; font-size:18px; margin-bottom:10px;">Strong Values</h4>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.8;">Integrity, discipline and brotherhood aren't just words here — they are lived daily in everything we do.</p>
+      </div>
+
+    </div>
+  </div>
+</section>       
+
+<!-- ═══════════════════════════════════════ FACILITIES ═══ -->
+<section id="facilities">
+  <div class="facilities-header reveal">
+    <span class="section-label">Campus Life</span>
+    <h2 class="section-title">World-Class Facilities</h2>
+    <p class="section-sub">Our campus is equipped with modern facilities designed to inspire learning, creativity, and physical well-being for every student.</p>
+  </div>
+
+  <div class="facilities-filter reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="academic">Academic</button>
+    <button class="filter-btn" data-filter="sports">Sports</button>
+    <button class="filter-btn" data-filter="dormitory">Boarding</button>
+    <button class="filter-btn" data-filter="science">Science</button>
+  </div>
+
+  <div class="facilities-grid" id="facilitiesGrid">
+
+    <div class="facility-card reveal" data-cat="academic" onclick="openPopup('library')">
+      <div class="facility-img">
+        <div class="facility-img-fill" style="background:linear-gradient(135deg,#1a3d2b,#2d6a4f); background-image:url('sena\ hero.png') ;">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="1.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div class="facility-tag">Academic</div>
+      </div>
+      <div class="facility-body">
+        <div class="facility-name">Modern Library</div>
+        <div class="facility-desc">Over 15,000 volumes, digital resources, and quiet study zones for deep learning.</div>
+        <div class="facility-meta">
+          <div class="fmeta-item"><span class="fmeta-dot"></span>15,000+ Books</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>Wi-Fi Enabled</div>
+        </div>
+        <div class="facility-more">View Details <span class="arrow-icon">&#8594;</span></div>
+      </div>
+    </div>
+
+    <div class="facility-card reveal reveal-delay-1" data-cat="science" onclick="openPopup('lab')">
+      <div class="facility-img">
+        <div class="facility-img-fill" style="background:linear-gradient(135deg,#0d3b5e,#1565a8);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(100,180,255,0.8)" stroke-width="1.2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11l3 3 3-3V3"/><path d="M3 9h18"/></svg>
+        </div>
+        <div class="facility-tag">Science</div>
+      </div>
+      <div class="facility-body">
+        <div class="facility-name">Science Labs</div>
+        <div class="facility-desc">Fully equipped Physics, Chemistry & Biology labs with modern instruments and safety gear.</div>
+        <div class="facility-meta">
+          <div class="fmeta-item"><span class="fmeta-dot"></span>3 Labs</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>ISO Certified</div>
+        </div>
+        <div class="facility-more">View Details <span class="arrow-icon">&#8594;</span></div>
+      </div>
+    </div>
+
+    <div class="facility-card reveal reveal-delay-2" data-cat="sports" onclick="openPopup('pitch')">
+      <div class="facility-img">
+        <div class="facility-img-fill" style="background:linear-gradient(135deg,#1b4332,#40916c);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        </div>
+        <div class="facility-tag">Sports</div>
+      </div>
+      <div class="facility-body">
+        <div class="facility-name">Sports Grounds</div>
+        <div class="facility-desc">Full-size football pitch, state of the art basketball court, .</div>
+        <div class="facility-meta">
+          <div class="fmeta-item"><span class="fmeta-dot"></span>5 Disciplines</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>Floodlit</div>
+        </div>
+        <div class="facility-more">View Details <span class="arrow-icon">&#8594;</span></div>
+      </div>
+    </div>
+
+    <div class="facility-card reveal" data-cat="dormitory" onclick="openPopup('dorm')">
+      <div class="facility-img">
+        <div class="facility-img-fill" style="background:linear-gradient(135deg,#5c3317,#8b5e3c);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,220,160,0.8)" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <div class="facility-tag">Boarding</div>
+      </div>
+      <div class="facility-body">
+        <div class="facility-name">Boarding Houses</div>
+        <div class="facility-desc">Comfortable, secure dormitories with houseparents, safe water, and structured routines.</div>
+        <div class="facility-meta">
+          <div class="fmeta-item"><span class="fmeta-dot"></span> mattresses are provided</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>personal wodrope</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>washing machines for students laundry</div>
+        </div>
+        <div class="facility-more">View Details <span class="arrow-icon">&#8594;</span></div>
+      </div>
+    </div>
+
+    <div class="facility-card reveal reveal-delay-1" data-cat="academic" onclick="openPopup('ict')">
+      <div class="facility-img">
+        <div class="facility-img-fill" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(100,200,255,0.8)" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="facility-tag">Academic</div>
+      </div>
+      <div class="facility-body">
+        <div class="facility-name">ICT Computer Lab</div>
+        <div class="facility-desc">High-spec computers with fiber internet, and digital media suites.</div>
+        <div class="facility-meta">
+          <div class="fmeta-item"><span class="fmeta-dot"></span>High spec Computers</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>Fiber Internet</div>
+        </div>
+        <div class="facility-more">View Details <span class="arrow-icon">&#8594;</span></div>
+      </div>
+    </div>
+
+    <div class="facility-card reveal reveal-delay-2" data-cat="sports" onclick="openPopup('hall')">
+      <div class="facility-img">
+        <div class="facility-img-fill" style="background:linear-gradient(135deg,#4a0e0e,#8b2222);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,160,160,0.8)" stroke-width="1.2"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        </div>
+        <div class="facility-tag">Multi purpose spaces</div>
+      </div>
+      <div class="facility-body">
+        <div class="facility-name">Assembly Hall</div>
+        <div class="facility-desc">A hall for events, debates, drama, and school assemblies.</div>
+        <div class="facility-meta">
+          <div class="fmeta-item"><span class="fmeta-dot"></span>Specialized halls</div>
+          <div class="fmeta-item"><span class="fmeta-dot"></span>specified furniture</div>
+        </div>
+        <div class="facility-more">View Details <span class="arrow-icon">&#8594;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ GALLERY ═══ -->
+<section id="gallery" style="background:var(--section-bg); padding:100px 5%;">
+  <div class="reveal" style="text-align:center; margin-bottom:48px;">
+    <span class="section-label">Campus Life</span>
+    <h2 class="section-title">Gallery</h2>
+    <p class="section-sub" style="margin:0 auto;">A glimpse into life at Good School — our spaces, our people, our story.</p>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="reveal" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:36px;">
+    <button class="gallery-filter-btn active" data-gfilter="all" onclick="filterGallery('all')">All</button>
+    <button class="gallery-filter-btn" data-gfilter="campus" onclick="filterGallery('campus')">Campus</button>
+    <button class="gallery-filter-btn" data-gfilter="sports" onclick="filterGallery('sports')">Sports</button>
+    <button class="gallery-filter-btn" data-gfilter="events" onclick="filterGallery('events')">Events</button>
+    <button class="gallery-filter-btn" data-gfilter="classrooms" onclick="filterGallery('classrooms')">Classrooms</button>
+  </div>
+
+  <!-- ===============================Scrollable gallery track=============== -->
+  <div style="position:relative;">
+    <!-- Left arrow -->
+    <button onclick="scrollGallery(-1)" style="position:absolute;left:-20px;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>
+    </button>
+
+    <div id="galleryTrack" style="display:flex; gap:20px; overflow-x:auto; scroll-behavior:smooth; padding:10px 4px 20px; scrollbar-width:thin; scrollbar-color:var(--gold) transparent; -webkit-overflow-scrolling:touch;">
+
+      <!-- CARD template — replace background colors with background-image:url('your-photo.jpg'); background-size:cover; background-position:center; -->
+
+      <div class="gallery-card" data-gcat="campus" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#1a3d2b,#2d6a4f); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Campus</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Main Entrance</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="classrooms" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#0d3b5e,#1565a8); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Classrooms</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Modern Classrooms</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="sports" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#1b4332,#40916c); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Sports</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Football Pitch</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="events" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#4a0e0e,#8b2222); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Events</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Annual Prizegiving</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="campus" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#5c3317,#8b5e3c); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Campus</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Boarding Houses</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="classrooms" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#1a1a2e,#16213e); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Classrooms</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">ICT Laboratory</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="sports" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#2d0057,#6a0dad); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Sports</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Basketball Court</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gcat="events" onclick="openGalleryLight(this)" style="flex:0 0 280px; height:200px; border-radius:16px; background:linear-gradient(135deg,#1a3d2b,#c9a84c); position:relative; cursor:pointer; overflow:hidden; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+        <div style="position:absolute;bottom:14px;left:14px;"><span style="background:rgba(0,0,0,0.5);color:white;padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Events</span><p style="color:white;font-family:'Playfair Display',serif;font-size:14px;margin-top:6px;">Cultural Day</p></div>
+        <div style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right arrow -->
+    <button onclick="scrollGallery(1)" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+    </button>
+  </div>
+
+  <!-- Scroll hint -->
+  <p class="reveal" style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:16px; letter-spacing:1px;">&#8592; Swipe or use arrows to explore &#8594;</p>
+</section>
+
+<!-- GALLERY LIGHTBOX -->
+<div id="galleryLightbox" style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;padding:20px;" onclick="closeGalleryLight(event)">
+  <button onclick="closeGalleryLight()" style="position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;color:white;font-size:20px;display:flex;align-items:center;justify-content:center;">&#10005;</button>
+  <button onclick="prevGalleryImg()" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>
+  </button>
+  <div id="lightboxContent" style="max-width:700px;width:100%;border-radius:20px;overflow:hidden;"></div>
+  <button onclick="nextGalleryImg()" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+  </button>
+</div>
+              
+
+<!-- ═══════════════════════════════════════ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-orb"></div>
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">We Would Love To Hear From You</h2>
+      <p class="section-sub">Whether you have admissions questions, want a campus tour, or simply want to learn more about Good School.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-info">
+            <h4>Address</h4>
+            <p>Plot xx, katabi town council,<br/>Wamala Zone along kampala-entebbe highway,next to Canan Estates</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.62a16 16 0 0 0 6 6l1.98-1.98a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-item-info">
+            <h4>Phone</h4>
+            <p>+256 751 906 055</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-item-info">
+            <h4>Email</h4>
+            <p>Goodsch@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal reveal-delay-2">
+      <div class="form-title">Send Us a Message</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="first-name"name="name" placeholder="e.g. John"/>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="last-name"name="name" placeholder="e.g. Mukasa"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email"name="email"  placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label>Inquiry Type</label>
+        <select name="inquiry">
+          <option value="" id="inquiry">Select inquiry type...</option>
+          <option>Admissions</option>
+          <option>Academic Programs</option>
+          <option>School Fees</option>
+          <option>Campus Tour</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="message" placeholder="Tell us how we can help you..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-name">Good School Entebbe</span>
+      <p>A premier institution of academic excellence, character formation, and holistic development on the shores of Lake Victoria, Uganda.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <a href="#hero">Home</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Academics</h5>
+      <a href="#">O-Level</a>
+      <a href="#">Combinations offered</a>
+    </div>
+    <div class="footer-col">
+      <h5>Admissions</h5>
+      <a href="#">Apply Online</a>
+      <a href="#">School Fees</a>
+      <a href="#">Scholarships</a>
+      <a href="#">Open Days</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Good School Entebbe. All rights reserved.</p>
+    <p style="color:rgba(255,255,255,0.2);font-size:11px;">Entebbe, Wakiso District, Uganda</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════ POPUP OVERLAY ═══ -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopupOutside(event)">
+  <div class="popup-card" id="popupCard">
+    <div class="popup-hero-img" id="popupImg">
+      <button class="popup-close" onclick="closePopup()">&#10005;</button>
+    </div>
+    <div class="popup-body">
+      <span class="popup-tag" id="popupTag"></span>
+      <div class="popup-title" id="popupTitle"></div>
+      <div class="popup-desc" id="popupDesc"></div>
+      <div class="popup-features" id="popupFeatures"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Message sent! We will get back to you shortly.</div>
+
+<script>
+ 
+  // ─── HAMBURGER ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+
+  // ─── FACILITIES FILTER ───
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const facilityCards = document.querySelectorAll('.facility-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      facilityCards.forEach(card => {
+        const cat = card.getAttribute('data-cat');
+        if (filter === 'all' || cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // ─── POPUP DATA ───
+  const popupData = {
+    library: {
+      tag: 'Academic',
+      title: 'Modern Library & Resource Centre',
+      image: "sena hero.png",
+      desc: 'Our library is the intellectual heart of Good School. With over 15,000 curated volumes, digital subscriptions, a quiet reading floor, and group study rooms, it is designed to foster a deep love for knowledge and independent research.',
+      color: 'linear-gradient(135deg,#1a3d2b,#2d6a4f)',
+      iconColor: 'rgba(201,168,76,0.8)',
+      features: ['15,000+ Physical Books', 'Group Study Rooms', 'Quiet Reading Zones', 'High-Speed Wi-Fi', 'Research Assistance Staff']
+      
+    },
+    lab: {
+      tag: 'Science',
+      title: 'Advanced Science Laboratories',
+      desc: 'Three ISO-certified laboratories (Physics, Chemistry & Biology) equipped with cutting-edge instruments, chemical reagents, microscopes, and safety systems. Students gain hands-on practical experience that prepares them for university-level science.',
+      color: 'linear-gradient(135deg,#0d3b5e,#1565a8)',
+      iconColor: 'rgba(100,180,255,0.8)',
+      features: ['Physics Lab', 'Chemistry Lab', 'Biology Lab', 'Safety Equipment', 'Modern Instruments', 'ISO Certified Facility']
+    },
+    pitch: {
+      tag: 'Sports',
+      title: 'Sports Grounds & Athletics Complex',
+      desc: 'A world-class multi-sport complex featuring a full-size football pitch, netball courts, basketball courts, a 400m athletics track, and a floodlit multipurpose arena. Home to national-level competitions.',
+      color: 'linear-gradient(135deg,#1b4332,#40916c)',
+      iconColor: 'rgba(201,168,76,0.8)',
+      features: ['Full-Size Football Pitch', 'Basketball Courts', 'Games Coaches', 'Changing Rooms']
+    },
+    dorm: {
+      tag: 'Boarding',
+      title: 'Boarding Houses',
+      desc: 'Sena High provides comfortable, secure boarding houses separated by gender. Each house has dedicated houseparents, medical support, hot water showers, well-structured meal times, and a nurturing family atmosphere.',
+      color: 'linear-gradient(135deg,#5c3317,#8b5e3c)',
+      iconColor: 'rgba(255,220,160,0.8)',
+      features: [  'Fire fighting equipment','Smoke detectors', 'Spaced bed settings', 'Hot Water Showers', 'Medical Staff On-Site', 'Structured Routines', '24/7 Security']
+    },
+    ict: {
+      tag: 'Academic',
+      title: 'ICT & Computer Laboratory',
+      desc: 'Our fully air-conditioned ICT lab hosts 100 high-specification computers with fiber optic internet connectivity. Students learn coding, digital design, data management, and are prepared for the digital economy.',
+      color: 'linear-gradient(135deg,#1a1a2e,#16213e)',
+      iconColor: 'rgba(100,200,255,0.8)',
+      features: ['100 High-Spec Computers', 'Fiber Optic Internet', 'Coding & Programming', 'Digital Design Studio', 'Air Conditioned', 'Certified Tech Teachers']
+    },
+    hall: {
+      tag: 'Multipurpose',
+      title: 'Assembly Hall & Auditorium',
+      desc: 'A state-of-the-art 1,200-seat multipurpose hall equipped with professional audio-visual systems, a stage, lighting rigs, and full air conditioning. Used for assemblies, drama, debates, concerts, and national events.',
+      color: 'linear-gradient(135deg,#4a0e0e,#8b2222)',
+      iconColor: 'rgba(255,160,160,0.8)',
+      features: [ 'Professional AV System', 'Air Conditioned', 'Debate & Drama Venue', 'Event Hosting']
+    }
+  };
+
+  function openPopup(key) {
+    const data = popupData[key];
+    document.getElementById('popupTag').textContent = data.tag;
+    document.getElementById('popupTitle').textContent = data.title;
+    document.getElementById('popupDesc').textContent = data.desc;
+    const imgEl = document.getElementById('popupImg');
+    imgEl.style.background = data.color;
+    const iconSvg = getIconSvg(key, data.iconColor);
+    imgEl.innerHTML = `<button class="popup-close" onclick="closePopup()">&#10005;</button>${iconSvg}`;
+    const featEl = document.getElementById('popupFeatures');
+    featEl.innerHTML = data.features.map(f => `<div class="popup-feat"><span class="popup-feat-dot"></span>${f}</div>`).join('');
+    document.getElementById('popupOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function getIconSvg(key, color) {
+    const icons = {
+      library: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+      lab: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11l3 3 3-3V3"/><path d="M3 9h18"/></svg>`,
+      pitch: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20"/><path d="M2 12h20"/></svg>`,
+      dorm: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>`,
+      ict: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+      hall: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>`
+    };
+    return icons[key] || '';
+  }
+
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closePopupOutside(e) {
+    if (e.target === document.getElementById('popupOverlay')) closePopup();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+  
+
+  // ─── SCROLL REVEAL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+            <script src="script.js"></script>
+
+   <a  href="https://wa.me/256 751 906 055" class="whatsapp-float" target="_blank" aria-label="chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="whatsApp chat">
+   </a>      
+</body>
+</html>
