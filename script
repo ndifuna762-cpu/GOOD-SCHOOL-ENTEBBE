@@ -1,0 +1,304 @@
+// ─── EmailJS Config ───
+const EMAILJS_SERVICE_ID  = "service_gcn6u54";
+const EMAILJS_TEMPLATE_ID = "template_7wbmtrv";
+
+// ─── THEME TOGGLE ───
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    const isDark = toggle.classList.contains('active');
+    body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    toggle.querySelector('.knob').innerHTML = isDark ? '&#9790;' : '&#9788;';
+  });
+}
+
+// ─── HAMBURGER ───
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+}
+function closeMobile() {
+  if (mobileMenu) mobileMenu.classList.remove('open');
+}
+
+// ─── FACILITIES FILTER ───
+const filterBtns = document.querySelectorAll('.filter-btn');
+const facilityCards = document.querySelectorAll('.facility-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.getAttribute('data-filter');
+    facilityCards.forEach(card => {
+      const cat = card.getAttribute('data-cat');
+      if (filter === 'all' || cat === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// ─── POPUP DATA ───
+const popupData = {
+  library: {
+    tag: 'Academic',
+    title: 'Modern Library & Resource Centre',
+    desc: 'Our library is the intellectual heart of the school. With over 15,000 curated volumes, digital subscriptions, a quiet reading floor, and group study rooms, it is designed to foster a deep love for knowledge and independent research.',
+    color: 'linear-gradient(135deg,#1a3d2b,#2d6a4f)',
+    iconColor: 'rgba(201,168,76,0.8)',
+    features: ['15,000+ Physical Books', 'Group Study Rooms', 'Quiet Reading Zones', 'High-Speed Wi-Fi', 'Research Assistance Staff']
+  },
+  lab: {
+    tag: 'Science',
+    title: 'Advanced Science Laboratories',
+    desc: 'Three ISO-certified laboratories (Physics, Chemistry & Biology) equipped with cutting-edge instruments, chemical reagents, microscopes, and safety systems.',
+    color: 'linear-gradient(135deg,#0d3b5e,#1565a8)',
+    iconColor: 'rgba(100,180,255,0.8)',
+    features: ['Physics Lab', 'Chemistry Lab', 'Biology Lab', 'Safety Equipment', 'Modern Instruments', 'ISO Certified Facility']
+  },
+  pitch: {
+    tag: 'Sports',
+    title: 'Sports Grounds & Athletics Complex',
+    desc: 'A world-class multi-sport complex featuring a full-size football pitch, netball courts, basketball courts, a 400m athletics track, and a floodlit multipurpose arena.',
+    color: 'linear-gradient(135deg,#1b4332,#40916c)',
+    iconColor: 'rgba(201,168,76,0.8)',
+    features: ['Full-Size Football Pitch', 'Basketball Courts', 'Games Coaches', 'Changing Rooms']
+  },
+  dorm: {
+    tag: 'Boarding',
+    title: 'Boarding Houses',
+    desc: 'Comfortable, secure boarding houses separated by gender. Each house has dedicated houseparents, medical support, hot water showers, well-structured meal times, and a nurturing family atmosphere.',
+    color: 'linear-gradient(135deg,#5c3317,#8b5e3c)',
+    iconColor: 'rgba(255,220,160,0.8)',
+    features: ['Fire Fighting Equipment', 'Smoke Detectors', 'Hot Water Showers', 'Medical Staff On-Site', 'Structured Routines', '24/7 Security']
+  },
+  ict: {
+    tag: 'Academic',
+    title: 'ICT & Computer Laboratory',
+    desc: 'Our fully air-conditioned ICT lab hosts high-specification computers with fiber optic internet connectivity. Students learn coding, digital design, data management, and are prepared for the digital economy.',
+    color: 'linear-gradient(135deg,#1a1a2e,#16213e)',
+    iconColor: 'rgba(100,200,255,0.8)',
+    features: ['High-Spec Computers', 'Fiber Optic Internet', 'Coding & Programming', 'Digital Design Studio', 'Air Conditioned', 'Certified Tech Teachers']
+  },
+  hall: {
+    tag: 'Multipurpose',
+    title: 'Assembly Hall & Auditorium',
+    desc: 'A state-of-the-art multipurpose hall equipped with professional audio-visual systems, a stage, lighting rigs, and full air conditioning. Used for assemblies, drama, debates, concerts, and national events.',
+    color: 'linear-gradient(135deg,#4a0e0e,#8b2222)',
+    iconColor: 'rgba(255,160,160,0.8)',
+    features: ['Professional AV System', 'Air Conditioned', 'Debate & Drama Venue', 'Event Hosting']
+  }
+};
+
+function openPopup(key) {
+  const data = popupData[key];
+  if (!data) return;
+  document.getElementById('popupTag').textContent = data.tag;
+  document.getElementById('popupTitle').textContent = data.title;
+  document.getElementById('popupDesc').textContent = data.desc;
+  const imgEl = document.getElementById('popupImg');
+  imgEl.style.background = data.color;
+  const iconSvg = getIconSvg(key, data.iconColor);
+  imgEl.innerHTML = `<button class="popup-close" onclick="closePopup()">&#10005;</button>${iconSvg}`;
+  const featEl = document.getElementById('popupFeatures');
+  featEl.innerHTML = data.features.map(f =>
+    `<div class="popup-feat"><span class="popup-feat-dot"></span>${f}</div>`
+  ).join('');
+  document.getElementById('popupOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function getIconSvg(key, color) {
+  const icons = {
+    library: `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+    lab:     `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11l3 3 3-3V3"/><path d="M3 9h18"/></svg>`,
+    pitch:   `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20"/><path d="M2 12h20"/></svg>`,
+    dorm:    `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>`,
+    ict:     `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    hall:    `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.2"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>`
+  };
+  return icons[key] || '';
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closePopupOutside(e) {
+  if (e.target === document.getElementById('popupOverlay')) closePopup();
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePopup();
+});
+
+// ─── TOAST ───
+function showToast(msg, isError = false) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.remove("error", "show");
+  // small delay so removing "show" triggers CSS transition fresh
+  setTimeout(() => {
+    if (isError) toast.classList.add("error");
+    toast.classList.add("show");
+  }, 50);
+  setTimeout(() => toast.classList.remove("show"), 5000);
+}
+
+// ─── FORM SUBMIT ───
+function handleSubmit() {
+  const firstName = document.getElementById("first-name").value.trim();
+  const lastName  = document.getElementById("last-name").value.trim();
+  const email     = document.getElementById("email").value.trim();
+  const inquiryEl = document.querySelector("select");
+  const inquiry   = inquiryEl ? inquiryEl.value : "";
+  const messageEl = document.getElementById("message");
+  const message   = messageEl ? messageEl.value.trim() : "";
+
+  if (!firstName || !lastName) {
+    showToast("Please enter your full name.", true);
+    return;
+  }
+  if (!email || !email.includes("@")) {
+    showToast("Please enter a valid email address.", true);
+    return;
+  }
+  if (!message) {
+    showToast("Please write a message before sending.", true);
+    return;
+  }
+
+  const btn = document.querySelector(".submit-btn");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+  }
+
+  const templateParams = {
+    name:         `${firstName} ${lastName}`,
+    email:        email,
+    inquiry_type: inquiry || "Not specified",
+    message:      message,
+    reply_to:     email,
+  };
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(() => {
+      showToast("✓ Message sent! We will get back to you shortly.");
+      clearForm();
+    })
+    .catch((error) => {
+      console.error("EmailJS error:", error);
+      showToast("Oops! Something went wrong. Please try again.", true);
+    })
+    .finally(() => {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = "Send Message";
+      }
+    });
+}
+
+// ─── CLEAR FORM ───
+function clearForm() {
+  ["first-name", "last-name", "email"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  const select = document.querySelector("select");
+  if (select) select.selectedIndex = 0;
+  const textarea = document.getElementById("message");
+  if (textarea) textarea.value = "";
+}
+
+// ─── GALLERY SCROLL ───
+function scrollGallery(dir) {
+  const track = document.getElementById('galleryTrack');
+  if (track) track.scrollBy({ left: dir * 320, behavior: 'smooth' });
+}
+
+// ─── GALLERY FILTER ───
+function filterGallery(filter) {
+  document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-gfilter') === filter);
+  });
+  document.querySelectorAll('.gallery-card').forEach(card => {
+    const cat = card.getAttribute('data-gcat');
+    card.classList.toggle('g-hidden', filter !== 'all' && cat !== filter);
+  });
+}
+
+// ─── GALLERY LIGHTBOX ───
+let currentGalleryCards = [];
+let currentGalleryIndex = 0;
+
+function openGalleryLight(card) {
+  currentGalleryCards = [...document.querySelectorAll('.gallery-card:not(.g-hidden)')];
+  currentGalleryIndex = currentGalleryCards.indexOf(card);
+  renderLightbox();
+  const lb = document.getElementById('galleryLightbox');
+  if (lb) {
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function renderLightbox() {
+  const card  = currentGalleryCards[currentGalleryIndex];
+  const title = card.querySelector('p').textContent;
+  const cat   = card.querySelector('span').textContent;
+  const bg    = card.style.background;
+  document.getElementById('lightboxContent').innerHTML = `
+    <div style="height:400px;background:${bg};display:flex;align-items:center;justify-content:center;">
+      <div style="text-align:center;color:white;">
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">${cat}</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:28px;">${title}</h3>
+        <p style="opacity:0.5;font-size:12px;margin-top:8px;">Replace gradient with your real photo</p>
+      </div>
+    </div>
+    <div style="background:#111;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:rgba(255,255,255,0.5);font-size:12px;">${currentGalleryIndex + 1} / ${currentGalleryCards.length}</span>
+      <span style="color:var(--gold);font-size:12px;letter-spacing:1px;text-transform:uppercase;">${cat}</span>
+    </div>`;
+}
+
+function closeGalleryLight(e) {
+  if (e && e.target !== document.getElementById('galleryLightbox') && e.type === 'click') return;
+  const lb = document.getElementById('galleryLightbox');
+  if (lb) lb.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function prevGalleryImg() {
+  currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryCards.length) % currentGalleryCards.length;
+  renderLightbox();
+}
+function nextGalleryImg() {
+  currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryCards.length;
+  renderLightbox();
+}
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('galleryLightbox');
+  if (lb && lb.style.display === 'flex') {
+    if (e.key === 'ArrowLeft')  prevGalleryImg();
+    if (e.key === 'ArrowRight') nextGalleryImg();
+    if (e.key === 'Escape')     closeGalleryLight();
+  }
+});
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
