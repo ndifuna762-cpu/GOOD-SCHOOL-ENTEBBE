@@ -56,16 +56,7 @@ function handleSubmit() {
         btn.textContent = "Send Message";
       }
     });
-}
-// ─── Toast helper (supports error variant) ───
-function showToast(message, isError = false) {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-  toast.textContent = message;
-  toast.style.borderLeftColor = isError ? "#e55" : "var(--gold)";
-  toast.style.color = isError ? "#fdd" : "var(--gold-light, #e8c96a)";
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 4500);
+
 }
 // ─── Clear the form after successful send ───
 function clearForm() {
